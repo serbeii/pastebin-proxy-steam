@@ -1,10 +1,10 @@
-$ScriptDir  = Split-Path -Parent $MyInvocation.MyCommand.Path
-$VenvMitm   = Join-Path $ScriptDir "..\venv\Scripts\mitmdump.exe"
-$ProxyScript = Join-Path $ScriptDir "..\pastebin_fix.py"
+$ScriptDir   = Split-Path -Parent $MyInvocation.MyCommand.Path
+$VenvPython  = Join-Path $ScriptDir "..\venv\Scripts\python.exe"
+$ProxyScript = Join-Path $ScriptDir "..\proxy.py"
 
 $proxy = Start-Process -PassThru -WindowStyle Hidden `
-    -FilePath $VenvMitm `
-    -ArgumentList "-p 8080 -s `"$ProxyScript`" --quiet"
+    -FilePath $VenvPython `
+    -ArgumentList "`"$ProxyScript`""
 
 Start-Sleep -Seconds 2
 
